@@ -2,7 +2,9 @@ package com.automation.tests.day06;
 
 import com.automation.pojos.Spartan;
 import com.automation.utilities.ConfigurationReader;
+import io.restassured.config.ObjectMapperConfig;
 import io.restassured.http.ContentType;
+import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,6 +24,7 @@ public class POJOPracticeWithSpartanApp {
     public static void beforeAll() {
         baseURI = ConfigurationReader.getProperty("SPARTAN.URI");
         authentication = basic("admin", "admin");
+        config = config().objectMapperConfig(new ObjectMapperConfig(ObjectMapperType.GSON));
     }
 
     @Test
